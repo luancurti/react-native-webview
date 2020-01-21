@@ -27,15 +27,15 @@ import {
   AndroidWebViewProps,
   NativeWebViewAndroid,
   State,
-  RNCWebViewUIManagerAndroid,
+  RNCWKWebViewUIManagerAndroid,
 } from './WebViewTypes';
 
 import styles from './WebView.styles';
 
-const UIManager = NotTypedUIManager as RNCWebViewUIManagerAndroid;
+const UIManager = NotTypedUIManager as RNCWKWebViewUIManagerAndroid;
 
-const RNCWebView = requireNativeComponent(
-  'RNCWebView',
+const RNCWKWebView = requireNativeComponent(
+  'RNCWKWebView',
 ) as typeof NativeWebViewAndroid;
 const { resolveAssetSource } = Image;
 
@@ -58,7 +58,7 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
 
   static isFileUploadSupported = async () => {
     // native implementation should return "true" only for Android 5+
-    return NativeModules.RNCWebView.isFileUploadSupported();
+    return NativeModules.RNCWKWebView.isFileUploadSupported();
   };
 
   startUrl: string | null = null;
@@ -70,7 +70,7 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
 
   webViewRef = React.createRef<NativeWebViewAndroid>();
 
-  getCommands = () => UIManager.getViewManagerConfig('RNCWebView').Commands;
+  getCommands = () => UIManager.getViewManagerConfig('RNCWKWebView').Commands;
 
   goForward = () => {
     UIManager.dispatchViewManagerCommand(
@@ -295,7 +295,7 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
       );
     } else if (this.state.viewState !== 'IDLE') {
       console.error(
-        `RNCWebView invalid state encountered: ${this.state.viewState}`,
+        `RNCWKWebView invalid state encountered: ${this.state.viewState}`,
       );
     }
 
@@ -313,7 +313,7 @@ class WebView extends React.Component<AndroidWebViewProps, State> {
     }
 
     const NativeWebView
-      = (nativeConfig.component as typeof NativeWebViewAndroid) || RNCWebView;
+      = (nativeConfig.component as typeof NativeWebViewAndroid) || RNCWKWebView;
 
     const onShouldStartLoadWithRequest = createOnShouldStartLoadWithRequest(
       this.onShouldStartLoadWithRequestCallback,
