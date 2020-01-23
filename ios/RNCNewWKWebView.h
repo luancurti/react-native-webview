@@ -9,11 +9,11 @@
 #import <React/RCTDefines.h>
 #import <WebKit/WebKit.h>
 
-@class RNCWebView;
+@class RNCNewWKWebView;
 
-@protocol RNCWebViewDelegate <NSObject>
+@protocol RNCNewWKWebViewDelegate <NSObject>
 
-- (BOOL)webView:(RNCWebView *_Nonnull)webView
+- (BOOL)webView:(RNCNewWKWebView *_Nonnull)webView
    shouldStartLoadForRequest:(NSMutableDictionary<NSString *, id> *_Nonnull)request
    withCallback:(RCTDirectEventBlock _Nonnull)callback;
 
@@ -24,9 +24,9 @@
 - (instancetype)initWithDelegate:(id<WKScriptMessageHandler>)scriptDelegate;
 @end
 
-@interface RNCWebView : RCTView
+@interface RNCNewWKWebView : RCTView
 
-@property (nonatomic, weak) id<RNCWebViewDelegate> _Nullable delegate;
+@property (nonatomic, weak) id<RNCNewWKWebViewDelegate> _Nullable delegate;
 @property (nonatomic, copy) NSDictionary * _Nullable source;
 @property (nonatomic, assign) BOOL messagingEnabled;
 @property (nonatomic, copy) NSString * _Nullable injectedJavaScript;

@@ -5,16 +5,17 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import "RNCWebViewManager.h"
+#import "RNCNewWKWebViewManager.h"
 
 #import <React/RCTUIManager.h>
 #import <React/RCTDefines.h>
-#import "RNCWebView.h"
 
-@interface RNCWebViewManager () <RNCWebViewDelegate>
+#import "RNCNewWKWebView.h"
+
+@interface RNCNewWKWebViewManager () <RNCNewWKWebViewDelegate>
 @end
 
-@implementation RNCWebViewManager
+@implementation RNCNewWKWebViewManager
 {
   NSConditionLock *_shouldStartLoadLock;
   BOOL _shouldStartLoad;

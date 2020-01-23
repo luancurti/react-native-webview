@@ -4,11 +4,10 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-
-#import "RNCWebView.h"
+#import "RNCNewWKWebView.h"
 #import <React/RCTConvert.h>
 #import <React/RCTAutoInsetsProtocol.h>
-#import "RNCWKProcessPoolManager.h"
+#import "RNCNewWKProcessPoolManager.h"
 #import <UIKit/UIKit.h>
 
 #import "objc/runtime.h"
@@ -40,7 +39,7 @@ static NSDictionary* customCertificatesForHost;
 }
 @end
 
-@interface RNCWebView () <WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler, UIScrollViewDelegate, RCTAutoInsetsProtocol>
+@interface RNCNewWKWebView () <WKUIDelegate, WKNavigationDelegate, WKScriptMessageHandler, UIScrollViewDelegate, RCTAutoInsetsProtocol>
 @property (nonatomic, copy) RCTDirectEventBlock onLoadingStart;
 @property (nonatomic, copy) RCTDirectEventBlock onLoadingFinish;
 @property (nonatomic, copy) RCTDirectEventBlock onLoadingError;
@@ -53,7 +52,7 @@ static NSDictionary* customCertificatesForHost;
 @property (nonatomic, copy) WKWebView *webView;
 @end
 
-@implementation RNCWebView
+@implementation RNCNewWKWebView
 {
   UIColor * _savedBackgroundColor;
   BOOL _savedHideKeyboardAccessoryView;
@@ -156,7 +155,7 @@ static NSDictionary* customCertificatesForHost;
     wkWebViewConfig.websiteDataStore = [WKWebsiteDataStore defaultDataStore];
   }
   if(self.useSharedProcessPool) {
-    wkWebViewConfig.processPool = [[RNCWKProcessPoolManager sharedManager] sharedProcessPool];
+    wkWebViewConfig.processPool = [[RNCNewWKProcessPoolManager sharedManager] sharedProcessPool];
   }
   wkWebViewConfig.userContentController = [WKUserContentController new];
 
@@ -705,7 +704,7 @@ static NSDictionary* customCertificatesForHost;
 {
   [super layoutSubviews];
 
-  // Ensure webview takes the position and dimensions of RNCWebView
+  // Ensure webview takes the position and dimensions of RNCNewWKWebView
   _webView.frame = self.bounds;
   _webView.scrollView.contentInset = _contentInset;
 }
